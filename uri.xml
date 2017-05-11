@@ -1,0 +1,11 @@
+ Model model = ModelFactory.createDefaultModel();
+model.setNsPrefix("wcj", "http://example.org/wcjava/");
+Resource employee = model.createResource("wcj:employee");
+Resource person = model.createResource("wcj:person");
+Resource employer = model.createResource("wcj:employer");
+Resource organization = model.createResource("wcj:organization");
+Property hires = model.createProperty("wcj:hires");
+model.add(employer, hires, employee);
+model.add(employer, RDFS.subClassOf, organization);
+model.add(employee, RDFS.subClassOf, person);
+model.write(new FileWriter("ourEntities.rdf"), "RDF/XML"); 
